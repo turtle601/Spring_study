@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="americano" class="Coffe.Americano">
+		<property name = "price"  value = "1000"> </property>
+	</bean>
+	
+	<bean id="latte" class="Coffe.latte">
+		<property name = "price"  value = "3000"></property>
+	</bean>
+	
+	<bean id = "employee" class = "Coffe.Employee">
+		<!-- 내가 먹고 싶은 커피 객체를 지정한다. -->
+		<constructor-arg ref = "americano"></constructor-arg>
+		 
+	</bean>
+</beans>       
