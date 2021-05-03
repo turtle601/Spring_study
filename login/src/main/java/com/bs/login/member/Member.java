@@ -4,9 +4,7 @@ public class Member {
 	private String id;
 	private String pw;
 	private String mail;
-	private String hp1;
-	private String hp2;
-	private String hp3;
+	private MemPhone memPhone;
 	
 	public String getId() {
 		return id;
@@ -26,22 +24,12 @@ public class Member {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-	public String getHp1() {
-		return hp1;
+	public MemPhone getMemPhone() {
+		return memPhone;
 	}
-	public void setHp1(String hp1) {
-		this.hp1 = hp1;
+	public void setMemPhone(MemPhone memPhone) {
+		this.memPhone = memPhone;
 	}
-	public String getHp2() {
-		return hp2;
-	}
-	public void setHp2(String hp2) {
-		this.hp2 = hp2;
-	}
-	public String getHp3() {
-		return hp3;
-	}
-	public void setHp3(String hp3) {
-		this.hp3 = hp3;
-	}
+
+	
 }

@@ -9,8 +9,10 @@
 	ID : ${member.id}<br />
 	PW : ${member.pw}<br />
 	Mail : ${member.mail} <br />
-	hp1 : ${member.hp1} <br />
+	Phone : ${member.memPhone.hp1} - ${member.memPhone.hp2} - ${member.memPhone.hp3} <br />
 
+	<P> The time on the Server is ${serverTime}. </P>
+	
 	<a href="/login/resources/html/index.html"> first page </a>
 </body>
 </html> 

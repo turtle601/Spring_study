@@ -1,10 +1,12 @@
 package com.bs.login.member.dao;
 
+import java.util.Map;
+
 import com.bs.login.member.Member;
 
 public interface IMemberDao {
-	void memberInsert(String id, String pw, String mail, String hp1, String hp2, String hp3);
-	Member memberSelect(String id, String pw);
-	void memberUpdate();
-	void memberDelete();
+	Map<String, Member> memberInsert(Member member);
+	Member memberSelect(Member member);
+	Member memberUpdate(Member member);
+	Map<String, Member> memberDelete(Member member);
 }

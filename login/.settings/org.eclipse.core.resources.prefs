@@ -1,2 +1,4 @@
 eclipse.preferences.version=1
 encoding//src/main/webapp/WEB-INF/views/joinOk.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/modifyOk.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/removeOk.jsp=UTF-8

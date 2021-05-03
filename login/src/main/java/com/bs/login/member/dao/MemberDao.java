@@ -2,6 +2,7 @@ package com.bs.login.member.dao;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.stereotype.Component;
@@ -20,55 +21,35 @@ public class MemberDao implements IMemberDao{
 	}
 
 	@Override
-	public void memberInsert(String id, String pw, String mail, String hp1, String hp2, String hp3) {
-		System.out.println("memberInsert()");
-		System.out.println("id: " + id);
-		System.out.println("pw: " + pw);
-		System.out.println("mail: " + mail);
-		System.out.println("Phone: " + hp1 + " - " + hp2 + " - " + hp3);
+	public Map<String, Member> memberInsert(Member member) {
 		
-		Member member = new Member();
+		dbMap.put(member.getId(),member);
 		
-		member.setId(id);
-		member.setPw(pw);
-		member.setMail(mail);
-		member.setHp1(hp1);
-		member.setHp2(hp2);
-		member.setHp3(hp3);
-		
-		dbMap.put(id,member);
-		
-		Set<String> keys = dbMap.keySet();
-		Iterator<String> iterator = keys.iterator();
-		
-		while (iterator.hasNext()) {
-			String key = iterator.next();
-			Member mem = dbMap.get(key);
-			System.out.print("memberid:" + mem.getId() + "\t");
-			System.out.print("|memberpw:" + mem.getPw() + "\t");
-			System.out.print("|membermail:" + mem.getMail() + "\t");
-			System.out.print("|memberPhone:" + mem.getHp1() + " - " + 
-											   mem.getHp2() + " - " + 
-											   mem.getHp3() + "\n");
-		}
-	}	
-		
-	@Override
-	public Member memberSelect(String id, String pw) {
-		Member member = dbMap.get(id);
-		return member;
+		return dbMap;
 	}
 
 	@Override
-	public void memberUpdate() {
-		// TODO Auto-generated method stub
+	public Member memberSelect(Member member) {
 		
+		Member mem = dbMap.get(member.getId());
+		
+		return mem;
 	}
 
 	@Override
-	public void memberDelete() {
-		// TODO Auto-generated method stub
+	public Member memberUpdate(Member member) {
 		
+		dbMap.put(member.getId(),member);
+		
+		return dbMap.get(member.getId());
 	}
+
+	@Override
+	public Map<String, Member> memberDelete(Member member) {
+		dbMap.remove(member.getId());
+		return dbMap;
+	}
+	
+
 	
 }
