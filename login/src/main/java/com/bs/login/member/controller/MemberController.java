@@ -58,6 +58,7 @@ public class MemberController{
 		return "loginOk";
 	}
 	
+		
 	//입력받은 객체(데이터)를 service 클래스의 memberRemove함수를 통해서 해당 데이터를 삭제한다. 
 	@RequestMapping(value = "/remove", method = RequestMethod.POST)
 	public String remove(@ModelAttribute("mem") Member member) {

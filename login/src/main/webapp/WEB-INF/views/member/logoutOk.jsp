@@ -5,12 +5,8 @@
 	<title>Home</title>
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
-
-<a href = /login/resouces/html/index.html> </a>
+	<h1> Logout </h1>
+	
+	<a href="/login/resources/html/index.html"> Go Main </a>
 </body>
 </html>
