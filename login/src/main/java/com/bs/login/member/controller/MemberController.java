@@ -90,17 +90,28 @@ public class MemberController{
 	
 	// Modify
 	@RequestMapping(value = "/modifyForm", method = RequestMethod.GET)
-	public ModelAndView modifyForm(HttpServletRequest request) {
+	public String modifyForm(Model model,HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
 		Member member = (Member) session.getAttribute("member");
 		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("member",service.memberSearch(member));
-	
-		mav.setViewName("/member/modifyForm");
-		return mav;
 		
+		if (null == member) {
+			return "redirect:/";
+			
+		} else {
+			model.addAttribute("member",service.memberSearch(member));
+			
+		}
+		
+		return "/member/modifyForm";
+		
+//		ModelAndView mav = new ModelAndView();
+//		mav.addObject("member",service.memberSearch(member));
+//	
+//		mav.setViewName("/member/modifyForm");
+//		return mav;
+//	
 	}
 	
 	// submit modify button
@@ -119,7 +130,7 @@ public class MemberController{
 		return mav;
 	}
 	
-	// Rename
+	// Remove
 	@RequestMapping("/removeForm")
 	public ModelAndView removeForm(HttpServletRequest request) {
 		
@@ -127,8 +138,14 @@ public class MemberController{
 		
 		HttpSession session =  request.getSession();
 		Member member = (Member) session.getAttribute("member");
-		mav.addObject("member", member);
-		mav.setViewName("/member/removeForm");
+		
+		if (null == member) {
+			mav.setViewName("redirect:/");
+			
+		} else {
+			mav.addObject("member", member);
+			mav.setViewName("/member/removeForm");
+		}
 		
 		return mav;
 	
