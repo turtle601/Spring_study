@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,8 +24,14 @@ import com.bs.login.member.service.MemberService;
 @RequestMapping("/member")
 public class MemberController{
 	
-	@Resource(name="memService")
+	@Autowired
 	MemberService service;
+	
+	// "/cp" = index.jsp
+	@ModelAttribute("cp")
+	public String getContextPath(HttpServletRequest request) {
+		return request.getContextPath();
+	}
 	
 	// 현재 시간을 알려주는 함수(다른 함수가 실행되도 무조건 실행된다.)
 	@ModelAttribute("serverTime")
@@ -38,54 +45,107 @@ public class MemberController{
 	}
 	
 	
-	//입력받은 객체(데이터)를 service클래스의 memberRegister함수를 통해 등록한다. 
-	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String Join(Member member) {
+	//join
+	@RequestMapping("/joinForm")
+	public String joinFrom(Member member) {
+		return "/member/joinForm";
 		
-		service.memberRegister(member);
-		
-		//해당 객체들의 값을 jsp에 보여줄 수 있게 한다. 
-		return "joinOk";
-		
-		
-	}
-	//입력받은 객체(데이터)를 service클래스의 memberSearch함수를 통해서 해당 데이터가 있는지 찾는다. 
-	@RequestMapping(value = "/loginPage", method = RequestMethod.POST)
-	public String login(Member member) {
-		
-		service.memberSearch(member);
-		
-		return "loginOk";
 	}
 	
+	@RequestMapping(value = "/join", method = RequestMethod.POST)
+	public String joinReg(Member member) {
+		service.memberRegister(member);
 		
-	//입력받은 객체(데이터)를 service 클래스의 memberRemove함수를 통해서 해당 데이터를 삭제한다. 
+		return "/member/joinOk";	
+		
+	}
+	
+	// Login
+	@RequestMapping("/loginForm")
+	public String loginFrom(Member member) {
+		return "/member/loginForm";
+		
+	}
+	
+	// submit login button
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(Member member,HttpSession session) {
+		
+		Member mem = service.memberSearch(member);
+		
+		session.setAttribute("member", mem);
+		
+		return "/member/loginOk";
+		
+	}
+	
+	// logout 링크
+	@RequestMapping("/logout")
+	public String logout(Member member,HttpSession session) {
+		session.invalidate();
+		
+		return "/member/logoutOk";
+		
+	}
+	
+	// Modify
+	@RequestMapping(value = "/modifyForm", method = RequestMethod.GET)
+	public ModelAndView modifyForm(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("member");
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("member",service.memberSearch(member));
+	
+		mav.setViewName("/member/modifyForm");
+		return mav;
+		
+	}
+	
+	// submit modify button
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public ModelAndView modify(Member member, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		
+		Member mem = service.memberModify(member);
+		session.setAttribute("member", mem);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("memAft", mem);
+		mav.setViewName("/member/modifyOk");
+		
+		return mav;
+	}
+	
+	// Rename
+	@RequestMapping("/removeForm")
+	public ModelAndView removeForm(HttpServletRequest request) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session =  request.getSession();
+		Member member = (Member) session.getAttribute("member");
+		mav.addObject("member", member);
+		mav.setViewName("/member/removeForm");
+		
+		return mav;
+	
+	}
+	
+	// submit remove button
 	@RequestMapping(value = "/remove", method = RequestMethod.POST)
-	public String remove(@ModelAttribute("mem") Member member) {
+	public String remove(Member member, HttpServletRequest request) {
 		
 		service.memberRemove(member);
 		
-		return "removeOk";
+		HttpSession session = request.getSession();
+		session.invalidate();
 		
-		
+		return "/member/removeOk";
 	}
-	
-	// 입력받은 객체(데이터)를 service 클래스의 memberModify함수를 통해서 해당 데이터를 수정한다. 
-	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public ModelAndView modify(Member member) {
-		
-		Member[] members = service.memberModify(member);
-		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("memBef", members[0]);
-		mav.addObject("memAft", members[1]);
-		
-		// 보여질 뷰 이름
-		mav.setViewName("modifyOk");
-		
-		return mav;
-			
-	}
+
 	
 	
 }

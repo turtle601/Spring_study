@@ -10,15 +10,15 @@
 	<h1> Home </h1>
 	
 	<c:if test = "${empty member}">
-		<a href = "${cp}/member/join">회원가입</a>
-		<a href = "${cp}/member/login">로그인</a> 
+		<a href = "${cp}/member/joinForm">회원가입</a>
+		<a href = "${cp}/member/loginForm">로그인</a> 
 		
 	</c:if>
 	
 	<c:if test = "${!empty member}">
-		<a href = "${cp}/member/modify">수정</a>
+		<a href = "${cp}/member/modifyForm">수정</a>
 		<a href = "${cp}/member/logout">로그아웃</a>
-		<a href = "${cp}/member/remove">삭제</a>
+		<a href = "${cp}/member/removeForm">삭제</a>
 	</c:if>
 	
 </body>

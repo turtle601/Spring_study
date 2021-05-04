@@ -7,6 +7,9 @@
 <body>
 	<h1> Logout </h1>
 	
-	<a href="/login/resources/html/index.html"> Go Main </a>
+	<P>  The time on the server is ${serverTime}. </P>
+	
+	<a href="${cp}/"> MAIN </a>
+
 </body>
 </html>

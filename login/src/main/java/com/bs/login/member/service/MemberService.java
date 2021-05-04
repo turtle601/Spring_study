@@ -1,12 +1,17 @@
 package com.bs.login.member.service;
 
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.bs.login.member.Member;
 import com.bs.login.member.dao.MemberDao;
 
-@Repository("memService")
+@Service
 public class MemberService implements IMemberService{
 	
 	@Autowired
@@ -15,29 +20,50 @@ public class MemberService implements IMemberService{
 	
 	@Override
 	public void memberRegister(Member member) {
-		dao.memberInsert(member);
+		printMembers(dao.memberInsert(member));
 		
 	}
 	@Override
-	public void memberSearch(Member member) {
-		dao.memberSelect(member);
-		
+	public Member memberSearch(Member member) {
+		Member mem = dao.memberSelect(member);
+		printMember(mem);
+		return mem;
 	}
 
 	@Override
-	public Member[] memberModify(Member member) {
-		Member memBef = dao.memberSelect(member);
-		Member memAft = dao.memberUpdate(member);
+	public Member memberModify(Member member) {
 		
-		return new Member[]{memBef, memAft};
+		Member memAft = dao.memberUpdate(member);
+		printMember(memAft);
+		return memAft;
 	}
 
 	@Override
 	public void memberRemove(Member member) {
-		dao.memberDelete(member);
+		printMembers(dao.memberDelete(member));
 		
 	}
 
-
+	private void printMembers(Map<String, Member> map) {
+		
+		Set<String> keys = map.keySet();
+		Iterator<String> iterator = keys.iterator();
+		
+		while(iterator.hasNext()) {
+			String key = iterator.next();
+			Member mem = map.get(key);
+			printMember(mem);
+			
+		}
+	}
+	
+	private void printMember(Member mem) {
+		
+		System.out.print("ID:" + mem.getId() + "\t");
+		System.out.print("|PW:" + mem.getPw() + "\t");
+		System.out.print("|MAIL:" + mem.getMail() + "\n");
+		
+	}
+	
 	
 }

@@ -5,7 +5,7 @@
 	<title>Home</title>
 </head>
 <body>
-	<h1> memJoinOk </h1>
+	<h1> Join OK </h1>
 	ID : ${member.id}<br />
 	PW : ${member.pw}<br />
 	Mail : ${member.mail} <br />
@@ -13,6 +13,7 @@
 
 	<P> The time on the Server is ${serverTime}. </P>
 	
-	<a href="/login/resources/html/index.html"> first page </a>
+	<a href = "${cp}/"> Main </a>
+	
 </body>
 </html> 

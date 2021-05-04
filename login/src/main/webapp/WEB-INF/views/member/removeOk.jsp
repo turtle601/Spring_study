@@ -5,13 +5,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1> 삭제 </h1>
+	<h1> Delete success </h1>
 	
-	ID : ${mem.id} <br />
+	ID : ${member.id} <br />
 	
 	<P>  The time on the server is ${serverTime}. </P>
 	
-	<a href="/login/resources/html/index.html"> home </a>
+	<a href="${cp}/"> MAIN </a>
 
 </body>
 </html>

@@ -5,10 +5,14 @@
 	<title>Home</title>
 </head>
 <body>
+
 	<h1> memLoginOk </h1>
-	ID : ${member.id}<br />
-	PW : ${member.pw}<br />
+		ID : ${member.id}<br />
+		PW : ${member.pw}<br />
+
+	<P>  The time on the server is ${serverTime}. </P>
 	
-	<a href="/login/resources/html/index.html"> Go Main </a>
+	<a href="${cp}/"> MAIN </a>
+	
 </body>
 </html>
