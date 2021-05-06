@@ -4,7 +4,7 @@ public class Member {
 	private String id;
 	private String pw;
 	private String mail;
-	private MemPhone memPhone;
+	private int purcNum;
 	
 	public String getId() {
 		return id;
@@ -24,11 +24,11 @@ public class Member {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-	public MemPhone getMemPhone() {
-		return memPhone;
+	public int getPurcNum() {
+		return purcNum;
 	}
-	public void setMemPhone(MemPhone memPhone) {
-		this.memPhone = memPhone;
+	public void setPurcNum(int purcNum) {
+		this.purcNum = purcNum;
 	}
 
 	

@@ -11,7 +11,7 @@
 	ID : ${memAft.id}<br />
 	PW : ${memAft.pw}<br />
 	Mail : ${memAft.mail} <br />
-	Phone : ${memAft.memPhone.hp1} - ${memAft.memPhone.hp2} - ${memAft.memPhone.hp3}<br />
+	
 	
 	<P>  The time on the server is ${serverTime}. </P>
 	

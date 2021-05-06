@@ -8,8 +8,7 @@
 	<h1> Join OK </h1>
 	ID : ${member.id}<br />
 	PW : ${member.pw}<br />
-	Mail : ${member.mail} <br />
-	Phone : ${member.memPhone.hp1} - ${member.memPhone.hp2} - ${member.memPhone.hp3} <br />
+	Mail : ${member.mail} <br />	
 
 	<P> The time on the Server is ${serverTime}. </P>
 	

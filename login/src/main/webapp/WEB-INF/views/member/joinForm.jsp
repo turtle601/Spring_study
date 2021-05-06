@@ -28,15 +28,7 @@
 				<td>MAIL</td>
 				<td><form:input path = "mail" /></td>
 			</tr>
-			
-			<tr>
-				<td>Phone</td>
-				<td><form:input path = "memPhone.hp1" /> - 
-					<form:input path = "memPhone.hp2" /> - 
-					<form:input path = "memPhone.hp3" />
-				</td>
-			
-			</tr>
+
 			<tr>
 				<td colspan = "2">
 					<input type = "submit" value = "join">

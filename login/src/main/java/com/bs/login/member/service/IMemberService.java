@@ -7,5 +7,5 @@ public interface IMemberService {
 	Member memberSearch(Member member);
 	
 	Member memberModify(Member member);
-	void memberRemove(Member member);
+	int memberRemove(Member member);
 }

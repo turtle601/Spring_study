@@ -73,6 +73,9 @@ public class MemberController{
 		
 		Member mem = service.memberSearch(member);
 		
+		if(mem == null)
+			return "/member/loginForm";
+				
 		session.setAttribute("member", mem);
 		
 		return "/member/loginOk";
@@ -123,12 +126,12 @@ public class MemberController{
 	@RequestMapping("/removeForm")
 	public ModelAndView removeForm(HttpServletRequest request) {
 		
+		ModelAndView mav = new ModelAndView();
+		
 		HttpSession session = request.getSession();
 		Member member = (Member) session.getAttribute("member");
-		
-		ModelAndView mav = new ModelAndView();
+				
 		mav.addObject("member", service.memberSearch(member));
-		
 		mav.setViewName("/member/removeForm");
 				
 		return mav;
@@ -139,8 +142,9 @@ public class MemberController{
 	@RequestMapping(value = "/remove", method = RequestMethod.POST)
 	public String remove(Member member, HttpServletRequest request) {
 		
-		service.memberRemove(member);
-		
+		int result = service.memberRemove(member);
+		if(result == 0)
+			return "/member/removeForm";
 		HttpSession session = request.getSession();
 		session.invalidate();
 		
