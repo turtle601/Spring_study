@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
@@ -19,30 +20,11 @@ import com.bs.login.member.Member;
 @Repository
 public class MemberDao implements IMemberDao {
 
-	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@localhost:1521:turtle601";
-	private String userid = "system";
-	private String userpw = "1234";
-	
-	private ComboPooledDataSource dataSource;
-	
 	private JdbcTemplate template;
 	
-	public MemberDao() {
-		dataSource = new ComboPooledDataSource();
-		try {
-			dataSource.setDriverClass(driver);
-			dataSource.setJdbcUrl(url);
-			dataSource.setUser(userid);
-			dataSource.setPassword(userpw);
-			
-		} catch(PropertyVetoException e){
-			e.printStackTrace();
-			
-		}
-		
-		template = new JdbcTemplate();
-		template.setDataSource(dataSource);
+	@Autowired
+	public MemberDao(ComboPooledDataSource dataSource) {
+		this.template = new JdbcTemplate(dataSource);
 	}
 	
 	@Override

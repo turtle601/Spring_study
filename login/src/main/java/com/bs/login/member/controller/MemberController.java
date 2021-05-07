@@ -92,7 +92,7 @@ public class MemberController{
 	}
 	
 	// Modify
-	@RequestMapping(value = "/modifyForm", method = RequestMethod.GET)
+	@RequestMapping(value = "/modifyForm")
 	public ModelAndView modifyForm(HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
