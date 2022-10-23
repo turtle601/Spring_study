@@ -55,5 +55,6 @@
 - 그 외 페이지가 변함에 따라 로그인 상태를 유지하기 위해 session을 적용하였습니다.
 ---
 ### 참고 강의 자료
-https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC_renew#curriculum
+[자바 스프링 프레임워크 - 인프런 강의 자료](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC_renew#curriculum)
+
 
